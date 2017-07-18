@@ -1,0 +1,12 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "dolanan",
+    "database": "school",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "production": {
+    "use_env_variable": "DATABASE_URL"
+  }
+}
