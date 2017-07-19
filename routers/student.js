@@ -3,13 +3,13 @@ var router = express.Router()
 const db = require('../models');
 
 
-// router.use((req, res, next) => {
-//   if(req.session.authority > 0){
-//     next()
-//   } else {
-//     res.sendStatus(403);
-//   }
-// })
+router.use((req, res, next) => {
+  if(req.session.authority > 0){
+    next()
+  } else {
+    res.sendStatus(403);
+  }
+})
 
 router.get('/', function (req, res) {
   db.students.findAll({

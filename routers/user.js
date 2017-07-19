@@ -4,13 +4,13 @@ const db = require('../models');
 const mkey = require('../helpers/mkey');
 
 
-// router.use((req, res, next) => {
-//   if(req.session.authority === 3){
-//     next()
-//   } else {
-//     res.sendStatus(403);
-//   }
-// })
+router.use((req, res, next) => {
+  if(req.session.authority === 3){
+    next()
+  } else {
+    res.sendStatus(403);
+  }
+})
 
 router.get('/', function (req, res) {
   db.user.findAll({
