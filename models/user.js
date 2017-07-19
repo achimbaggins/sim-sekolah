@@ -14,6 +14,12 @@ module.exports = function(sequelize, DataTypes) {
         let pass = encryptpass(models.password, sec)
         models.password = pass;
         models.secret = sec
+      },
+      beforeUpdate: models => {
+        let sec =  mkey().toString();
+        let pass = encryptpass(models.password, sec)
+        models.password = pass;
+        models.secret = sec
       }
     }
   });

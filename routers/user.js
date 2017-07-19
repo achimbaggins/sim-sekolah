@@ -44,4 +44,43 @@ router.post('/add', function (req, res) {
   })
 })
 
+router.get('/:id/edit', function (req, res) {
+  db.user.findOne({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(result => {
+    console.log(result.username + '======================');
+    res.render('user-edit', {userEdit : result})
+  })
+})
+
+router.post('/:id/edit', function (req, res) {
+  // console.log(mkey().toString());
+  db.user.update({
+    username: req.body.username,
+    password: req.body.password,
+    role: req.body.role,
+    // secret: mkey().toString(),
+    createdAt: new Date(),
+    updatedAt: new Date()
+  })
+  .then(result => {
+    res.redirect('/users')
+  })
+})
+
+
+
+router.get('/:id/delete', function (req, res) {
+  db.user.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(result => {
+    res.redirect('/users')
+  })
+})
 module.exports = router
